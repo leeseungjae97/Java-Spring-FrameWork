@@ -1,22 +1,17 @@
 
-//@InitValue À§Ä¡°¡ field°¡ ¾Æ´Ï¹Ç·Î ¾µ ¼ö ¾ø´Ù.
 public class Member {
 	
-	@InitValue
+	@InitValue(value2="í™ê¸¸ë™")
 	private String name;
 	
+	@InitValue(value=100)
 	private int age;
+	
 	public String getName() {
 		return name;
 	}
-	public void setName(String name) {
-		this.name = name;
-	}
 	public int getAge() {
 		return age;
-	}
-	public void setAge(int age) {
-		this.age = age;
 	}
 	public Member(String name, int age) {
 		super();
@@ -31,15 +26,15 @@ public class Member {
 	@DefaultMethod
 	public void print() {
 		// TODO Auto-generated method stub
-		System.out.println("ÀÌ¸§ : " + name);
-		System.out.println("³ªÀÌ : " + age);
+		System.out.println("ì´ë¦„ : " + name);
+		System.out.println("ë‚˜ì´ : " + age);
 	
 	}
 	@DefaultMethod
 	public void print2() {
 		// TODO Auto-generated method stub
-		System.out.println("ÀÌ¸§ : " + name);
-		System.out.println("³ªÀÌ : " + age);
+		System.out.println("ì´ë¦„ : " + name);
+		System.out.println("ë‚˜ì´ : " + age);
 	
 	}
 }

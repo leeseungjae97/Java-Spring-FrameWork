@@ -278,7 +278,25 @@ for(Method method : methods) {
 ```
 ![](pic/annotationuseinmain.png)
 
+```java
+
+```
 Spring Frame Work는 특히 Annotation을 기반으로 동작하는 기능들이 많으므로 숙지해두자.
 
 ---
 
+## Maven
+Maven은 빌드 도구로써 자바 프로젝트 진행시 반복되는 빌드 과정을 효율적으로 관리하는 툴
+![](pic/Maven.png)
+
+`환경변수 설정`
+M2_HOME 
+-  maven설치 폴더 경로
+
+PATH
+- %M2_HOME%\bin
+
+
+![](pic/MavenInstall.png)
+
+![](pic/MavenCMDCommand.png)
