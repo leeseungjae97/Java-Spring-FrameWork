@@ -1,0 +1,4 @@
+2020-07-20 09:58:18,099 [Worker-0: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2020-07-20 10:05:53,116 [Worker-2: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2020-07-20 10:08:04,545 [ForkJoinPool.commonPool-worker-3] WARN  org.eclipse.jgit.util.FS - locking FileBasedConfig[C:\Users\jmnu1\.gitconfig] failed after 5 retries
+2020-07-20 10:13:05,390 [Worker-2: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
