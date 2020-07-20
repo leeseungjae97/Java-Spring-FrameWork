@@ -300,3 +300,37 @@ PATH
 ![](pic/MavenInstall.png)
 
 ![](pic/MavenCMDCommand.png)
+
+---
+
+# DI(Dependency Injection)
+느슨한 결합을 통해 스프링 프레임워크를 이용한 기존 클래스의 변경없이 부품객체를 쉽게 변경할 수 있게 만든다.
+
+프레임워크는 객체의 생성과 주입을 관리 해줌으로써 보다 유지 보수성이 좋은 어플리케이션 작성을 가능하게 해준다.
+
+Setter Injection
+    setter 메서드를 통한 의존성 주입
+
+Constructor Injection
+    생성자를 통한 의존성 주입
+
+# IoC(Inversion of Control) 컨테이너
+
+Dependency Lookup
+
+Dependency Injection
+    constructor
+    setter
+
+Spring FrameWork는 DI라는 기능을 통해 객체의 생성과 주입을 자동 수행.
+
+객체를 생성하고 생성된 객체를 보관 및 관리하며 참조할 수 있도록 해준다.
+
+`XML(Spring Bean Configuration)`파일의 이용
+    스프링 프레임워크에 의해 생성되는 객체와 객체결합에 대한 내용 XML 형식으로 정의
+
+`Annotation`을 이용
+    `Java Class` 파일 정의 시 `Annotation`을 이용하여 `Bean`을 이용한 `class`라는 것을 명시해준다.
+
+
+
