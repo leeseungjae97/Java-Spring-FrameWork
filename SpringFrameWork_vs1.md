@@ -113,7 +113,7 @@ public static void main(String[] args) {
 
 해당 매서드를 통한 무언가의 작업을 하기위해서 해당 클래스를 열어봐야한다
 
-그러나 `invoketion`을 통해 열게된다면 `invoke try`절에서 해당 작업을 수행하면된다.
+그러나 `invocation`을 통해 열게된다면 `invoke try`절에서 해당 작업을 수행하면된다.
 
 ```java
 // 전처리
@@ -128,7 +128,7 @@ print() {
     // 후처리
 }
 ```
-하지만 `invoketion`을 사용하면 모든 `Method`에 대해서 대응되지 못한다.
+하지만 `invocation`을 사용하면 모든 `Method`에 대해서 대응되지 못한다.
 모든 메서드에 대응하게 하려면 `invoke` 절을 `Method`마다 다짜주어야한다.
 사용 또한 복잡하다.
 
@@ -171,4 +171,114 @@ public class DefaultBookServiceProxy extends DefaultBookService {
 결과 수행<br/>
 ![](pic/JavaProxy.png)
 
-하지만 구현이 복잡하고 클래스기반의 Proxy는 생성하지 못하는 단점이 있다.
+`Proxy`객체의 생성은 `Proxy` 클래스의 `newProxyInstance()` 메서드를 이용하여 생성
+
+```java
+Object Proxy.newProxyInstance(ClassLoader loader, Class[] interfaces, invocationHandler h);
+```
+<br/>
+
+`invocationHandler`는 반드시 `invoke`를 구현해야한다.
+```java
+                            //Object 반환이므로 형변환해준다.
+BookService bookservice = (BookService) Proxy.newProxyInstance(
+        DefaultBookService.class.getClassLoader(), //1
+        new Class[] {BookService.class},//2
+        new InvocationHandler() {//3
+    //1. proxy가 구현할 상위 interface
+    //2. 해당 interface를 구현하는 class들을 불러오고
+    //3. invocationHandler를 noname block으로 구현
+    BookService bookService = new DefaultBookService("스프링", 25000);
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) throws Exception {
+        //전처리 작업 수행
+        System.out.println("전처리 작업수행");
+        Object obj = method.invoke(bookService, args);
+        //후처리 작업수행
+        System.out.println("후처리 작업수행");
+        return obj;
+    }
+});
+bookservice.print();
+```
+
+![](pic/InvocationHandler.png)
+`InvocationHandler`가 붙은 `bookservice`는 어떠한 메서드를 쓰더라도 `invoke()`가 붙어 나온다.
+
+이 처럼 `Proxy`는 구현이 복잡하다
+또한 클래스기반의 `Proxy`는 생성하지 못하는 단점이 있다.
+
+---
+
+## Java Annotation
+![](pic/AnnotationUsage.png) <br/>
+자바 애너테이션(Java Annotation)은 자바 소스 코드에 추가하여 사용할 수 있는 메타데이터의 일종. 
+보통 @ 기호를 앞에 붙여서 사용한다. JDK 1.5 버전 이상에서 사용 가능하다. 
+자바 애너테이션은 클래스 파일에 임베디드되어 컴파일러에 의해 생성된 후 자바 가상머신에 포함되어 작동
+
+![](pic/JavaAnnotation.png)
+
+---
+### Custom Annotation
+
+- MarkAnnotation
+    표시만 하는 annotation
+- SingleValueAnnotation
+    하나의 값을 입력받는 annotation
+- MultiValueAnnotation
+    여러값을 입력받는 anntation
+
+![](pic/customAnnotation.png)
+
+```java
+@Retention(RetentionPolicy.RUNTIME)//runtime에 동작하도록 설정
+@Target(ElementType.FIELD)//Field에 부여 할 수 있는 annotation
+public @interface InitValue {
+	//내부 내용이 없으므로 marker annotation의 역할을 수행한다.
+}
+```
+```java
+//@InitValue 위치가 field가 아니므로 쓸 수 없다.
+public class Member {
+	@InitValue
+	private String name;
+}
+```
+---
+`reflection을 이용한 Annotation 활용 - `
+```java
+@Retention(RetentionPolicy.RUNTIME)
+public @interface DefaultMethod {}
+```
+```java
+@DefaultMethod
+	public void print() {}
+```
+
+`Method`에 붙은 `annotation` 찾기
+```java
+Member member = new Member("심청이", 16);
+Class<?> cls = member.getClass();
+
+Method[] methods = cls.getDeclaredMethods();
+//method에 붙은annotation을 찾기위해선 reflection을 써야한다
+for(Method method : methods) {
+    DefaultMethod annotation = method.getAnnotation(DefaultMethod.class);
+    if(annotation != null) {
+        try {
+            //DefaultMethod Annotation이 달려있는 Method 호출
+            method.invoke(member);
+            System.out.println("후처리");
+        } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+}
+```
+![](pic/annotationuseinmain.png)
+
+Spring Frame Work는 특히 Annotation을 기반으로 동작하는 기능들이 많으므로 숙지해두자.
+
+---
+

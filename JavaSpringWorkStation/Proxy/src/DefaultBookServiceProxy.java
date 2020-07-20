@@ -14,5 +14,4 @@ public class DefaultBookServiceProxy extends DefaultBookService {
 		System.out.println("후처리작업");
 
 	}
-
 }
