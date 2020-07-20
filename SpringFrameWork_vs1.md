@@ -286,7 +286,7 @@ Spring Frame Work는 특히 Annotation을 기반으로 동작하는 기능들이
 ---
 
 ## Maven
-Maven은 빌드 도구로써 자바 프로젝트 진행시 반복되는 빌드 과정을 효율적으로 관리하는 툴
+Maven은 빌드 도구로써 자바 프로젝트 진행시 반복되는 빌드 과정을 효율적으로 관리하는 툴<br/>
 ![](pic/Maven.png)
 
 `환경변수 설정`
@@ -331,6 +331,15 @@ Spring FrameWork는 DI라는 기능을 통해 객체의 생성과 주입을 자�
 
 `Annotation`을 이용
     `Java Class` 파일 정의 시 `Annotation`을 이용하여 `Bean`을 이용한 `class`라는 것을 명시해준다.
+
+
+## Maven
+
+`외부에서 내부로`
+
+`내부에서 Maven 생성`
+
+`다른 프로젝트를 Maven으로 변환`
 
 
 
