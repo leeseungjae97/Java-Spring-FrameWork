@@ -16,7 +16,6 @@ public class Regular implements Employee{
 	}
 
 
-
 	public int getSalary() {
 		return salary;
 	}

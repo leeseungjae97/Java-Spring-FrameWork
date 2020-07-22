@@ -11,7 +11,7 @@ public class ManagerImple implements Manager{
 	@Override
 	public void pay() {
 		for( Employee emp : employees) {
-			
+			if(emp.getClass().isAnnotationPresent( ));
 		}
 	}
 
