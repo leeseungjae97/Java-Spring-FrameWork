@@ -1,17 +1,14 @@
 package jdbctemplate.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.stereotype.Repository;
 
 import jdbctemplate.mapper.MemberVOMapper;
+import jdbctemplate.pstmt.SelectByEmailPassPstmtCreator;
 import jdbctemplate.vo.MemberVO;
 
 @Repository("memberDAO")
@@ -57,16 +54,7 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public MemberVO selectByEmailPass(String email, String pass) throws Exception {
 		List<MemberVO> members = null;
-		members = temp.query(new PreparedStatementCreator() {
-			@Override
-			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-				PreparedStatement pstmt = con.prepareStatement("SELECT * FROM members WHERE email=? AND pass=?");
-				pstmt.setString(1, email);
-				pstmt.setString(2, pass);
-				return pstmt;
-			}
-		}, 
-		new MemberVOMapper());
+		members = temp.query(new SelectByEmailPassPstmtCreator(email, pass) ,new MemberVOMapper());
 		return (members.size() == 0 ? null : members.get(0));
 	}
 

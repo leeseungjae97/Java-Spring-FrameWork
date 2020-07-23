@@ -49,9 +49,15 @@ public interface MemberRegister {
 public class MemberRegisterImpl implements MemberRegister {
 ```
 ---
+## JdbcTemplate
+`DataSource`를 멤버로 가지며 `DataSource`를 이용하여 데이터베이스에 대한 작업을 쉽게 할 수 있도록 기능제공
+
+`Statement`생성과 실행같은 `JDBC` 핵심 작업을 수행 `SQL`문을 실행하거나 `ResultSet`에 대한 반복적인 값의 작업을 수행
+
+---
 ## RowMapper
 ![](pic/RowMapper.png)
-RowMapper 내부에서 자체적으로 `ResultSet` 을 돌려준다.
+`RowMapper` 내부에서 자체적으로 `ResultSet` 을 돌려준다.
 ```java
 members = temp.query(sql, new RowMapper<MemberVO>() {
     @Override
@@ -112,5 +118,24 @@ members = temp.query(new PreparedStatementCreator() {
     }
 }, 
 new MemberVOMapper());
+```
+
+`Custom PreparedStatementCreator`
+```java
+public class SelectByEmailPassPstmtCreator implements PreparedStatementCreator{
+	private String email;
+	private String pass;
+	public SelectByEmailPassPstmtCreator(String email, String pass) {
+		this.email = email;
+		this.pass = pass;
+	}
+	@Override
+	public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+		PreparedStatement pstmt = con.prepareStatement("SELECT * FROM members WHERE email=? AND pass=?");
+		pstmt.setString(1, email);
+		pstmt.setString(2, pass);
+		return pstmt;
+	}
+}
 ```
 
