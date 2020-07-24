@@ -17,9 +17,4 @@ public class ExceptionController{
         model.addAttribute(student);
         return "mypage";
     }
-
-    @ExceptionHandler(ArithmeticException.class)
-    public String handleArtihmeticException() {
-        return "runtimeError";
-    }
 }

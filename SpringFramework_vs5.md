@@ -51,7 +51,7 @@ src/main/webapp/WEB-INF/web.xml 파일은 Deployment Descriptor이다.
 `root-context`에는 `view`와 관련되지 않는 빈 객체를 정의한다.
 즉 `Service`나 `DAO`, `DataSource`등을 말한다.
 
-
+---
 ## servlet-context.xml
 `Servlet`이 초기화 될 때 전달되는 `Spring Bean Configuration` 파일
 `Controller`나 `Annotation`, `ViewResolver`, `Interceptor`,
@@ -114,7 +114,7 @@ public class HomeController {
     // "/WEB-INF/views/home.jsp" 파일을 View로 선택하게된다.
 }
 ```
-최종적으로 URI가 GET을 요청하면 나오는 jsp파일을 설정한다.
+최종적으로 URI가 요청하면 String을 반환하여 jsp파일을 return한다.
 
 ---
 ## Spring MVC 동작 원리
@@ -122,9 +122,9 @@ public class HomeController {
 
 1. 클라이언트가 서버에게 요청을 보낸다. 서버에게 오는 모든 요청은 `DispatcherServlet`이 받는다.
 
-2. `DispatcherServlet`은 요청된 URL을 `HandlerMapping` 객체에 넘기고, 호출해야 할 Controller 메소드(핸들러) 정보를 얻는다.
+2. `DispatcherServlet`은 요청된 URL을 `HandlerMapping` 객체에 넘기고, 호출해야 할 `Controller` 메소드(`Handler`) 정보를 얻는다.
 
-3. Controller를 반환받은 `DispatcherServlet`은 `HandlerAdapter`에게 컨트롤러 수행을 요청한다.
+3. `Controller` 를 반환받은 `DispatcherServlet`은 `HandlerAdapter`에게 컨트롤러 수행을 요청한다.
 ```
 보다 정확하게 표현한다면, HandlerMapping은 DispatcherServlet로부터 전달된 URL을 바탕으로
 
@@ -141,24 +141,20 @@ HandlerAdapter 객체를 가져와서 해당 메소드를 실행하게 된다.
 
 4. `HandlerAdapter`가 `ModelAndView`를 `Controller`에 보낸다.
 
-5. Controller 객체는 비즈니스 로직을 처리하고, 그 결과를 바탕으로 뷰(ex. JSP)에 전달할 객체를 Model 객체에 저장한다. DispatcherServlet에게 view name을 리턴한다.
+5. `Controller` 객체는 비즈니스 로직을 처리하고, 그 결과를 바탕으로 뷰(ex. JSP)에 전달할 객체를 `Model` 객체에 저장한다. `DispatcherServlet`에게 `view` name을 리턴한다.
 
-6. DispatcherServlet은 view name을 View Resolver에게 전달하여 View 객체를 얻는다.
+6. `DispatcherServlet`은 `view` name을 `View Resolver`에게 전달하여 View 객체를 얻는다.
 
+7. `DispatcherServlet`은 View 객체에 화면 표시를 의뢰한다.
 
-
-7. DispatcherServlet은 View 객체에 화면 표시를 의뢰한다.
-
-
-
-8. View 객체는 해당하는 뷰(ex. JSP, Thymeleaf)를 호출하며, 뷰는 Model 객체에서 화면 표시에 필요한 객체를 가져와 화면 표시를 처리한다.
+8. `View` 객체는 해당하는 뷰(ex. JSP, Thymeleaf)를 호출하며, 뷰는 Model 객체에서 화면 표시에 필요한 객체를 가져와 화면 표시를 처리한다.
 
 ![](pic/SpringComponent.png)
 
 ---
 ## Controller
-DispatcherServlet은 요청을 처리할 컨트롤러를 HandlerMapping을 사용하여 검색하며
-이떄 HandlerMapping은 요청에 대한 Controller를 검색하기 위해 @Controller annotation을 사용한다.
+`DispatcherServlet`은 요청을 처리할 컨트롤러를 `HandlerMapping`을 사용하여 검색하며
+이떄 `HandlerMapping`은 요청에 대한 `Controller`를 검색하기 위해 `@Controller` annotation을 사용한다.
 ```java
 @Controller
 public class WelcomeController {
@@ -466,7 +462,7 @@ public class WelcomeController {
     <url-pattern>/*</url-pattern>
 </filter-mapping>
 ```
-
+---
 ## @PathVariable
 ```java
 @Controller
@@ -496,7 +492,7 @@ number : ${number}
 </body>
 </html>
 ```
-
+----
 ## @ModelAttribute
 > 그리고 Command 객체
 ```java
@@ -537,6 +533,7 @@ ex ) nick == setNick
     }
 }
 ```
+---
 ## redirect 처리
 특정 처리를 돌리는 다른 페이지에 돌린다.
 ```java
@@ -550,6 +547,7 @@ public String test(@ModelAttribute("member") MemberVO member, Model model) {
     }
 }
 ```
+---
 
 ## Controller 구현 없이 경로 매핑(ViewController)
 jsp에서 구현이 끝난 page라거나 독립적인 page에 대해서 사용한다.
@@ -598,3 +596,47 @@ public class ExceptionController{
 `Handler method`에서 `ArithmmeticException`이 발생했을때의 예외처리를 담당한다.
 
 ![](pic/CustomExceptionPage.png)
+
+---
+## @ControllerAdvice를 이용한 공통 Exception 처리
+`ExceptionHandler`는 해당의 선언한 해당의 class 내에서 발생한 예외만을 처리한다.
+동일한 예외의 처리를 일일이 하기 번거러우니 `ExceptionHandler`를 모아둔 class를 따로 만들어 적용.
+
+
+별도의 `ExceptionHandler class`가 모든 `Controller`의 `Exception`을 처리할 수 있게 해주는 annotation이 
+`@ControllerAdvice` 이다.
+
+`@ControllerAdvice`에 패키지를 인자로 두어 해당 패키지내의 Exception을 Handler로 처리하게된다.
+```java
+@ControllerAdvice("com.example.springmvc")
+public class CommonExceptionHandler {
+    @ExceptionHandler(ArithmeticException.class) 
+    public String handleArtimeticException() {
+        return "runtimeError";
+    }
+}
+```
+
+기존의 `ExceptionHandler`를 쓰고있는 곳을 지워주었다.
+```java
+@Controller
+public class ExceptionController{
+    @RequestMapping("/exception")
+    public String mypage(@ModelAttribute("student") Student student, Model model) {
+        int a= 10;
+        int b= 0;
+        int c= a/ b;
+        model.addAttribute(student);
+        return "mypage";
+    }
+}
+//암것두 업쓰요
+```
+![](pic/ControllerAdviceExceptionHandler.png)<br/>
+여전히 `Exception` 처리를 잘해주고 있다.
+
+
+-주의! `@Controller` annotation이 달린 `Controller`에 대해서만 advice 해준다. 일반 class의 Exception은 처리하지 않는다.
+
+---
+Multiple Server Error 가 뜬다면 Server를 지우고 다시 설치
