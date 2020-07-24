@@ -19,7 +19,7 @@ public class MemberVO {
 	private String nick;
 	private Timestamp registeredAt;
     private Timestamp removedAt;
-    
+
     //getter, setter, constructor
 ```
 `MemberDAO <<interface>>`
@@ -63,8 +63,8 @@ members = temp.query(sql, new RowMapper<MemberVO>() {
     @Override
     public MemberVO mapRow(ResultSet rs, int rowNum) throws SQLException {
         return new MemberVO(
-                rs.getString("email"), 
-                rs.getString("pass"), 
+                rs.getString("email"),
+                rs.getString("pass"),
                 rs.getString("nick"),
                 rs.getTimestamp("registeredAt"),
                 rs.getTimestamp("removedAt"));
@@ -81,8 +81,8 @@ public class MemberVOMapper implements RowMapper<MemberVO>{
 	@Override
 	public MemberVO mapRow(ResultSet rs, int rowNum) throws SQLException {
 		return new MemberVO(
-				rs.getString("email"), 
-				rs.getString("pass"), 
+				rs.getString("email"),
+				rs.getString("pass"),
 				rs.getString("nick"),
 				rs.getTimestamp("registeredAt"),
 				rs.getTimestamp("removeAt"));
@@ -116,7 +116,7 @@ members = temp.query(new PreparedStatementCreator() {
         pstmt.setString(2, pass);
         return pstmt;
     }
-}, 
+},
 new MemberVOMapper());
 ```
 
@@ -173,7 +173,7 @@ public interface PartDAO {
 }
 ```
 현재 `partId`는 DB에서 `AUTO_INCREMENT`로 `DEFAULT`함수를 통해 generate되어진다.
-그러므로 개발자는 `partName`의 `partId`를 알 수 없으므로 
+그러므로 개발자는 `partName`의 `partId`를 알 수 없으므로
 jdbc에서 `partId`를 이용하여 Part를 찾을 수 없다.
 
 ```java
@@ -194,10 +194,10 @@ public PartVO selectById(int partId) throws PartException {
 	public boolean insert(PartVO part) throws PartException {
 		boolean result = false;
 		KeyHolder holder = new GeneratedKeyHolder();
-		
+
 		int effectedRow = jTemp.update(new PartInsertCreator(part, new String[] { "partId" }), holder);
 		//update안에 있는 KeyHolder에 column의 내용이 들어간다.
-		
+
 		if(effectedRow == 0) {
 			throw new PartInputException();
 		}
@@ -215,7 +215,7 @@ public PartVO selectById(int partId) throws PartException {
 
 `JdbcTemplate.update()`에 사용된 `Custom interface`
 `PartInsertCreator`
-```java 
+```java
 public class PartInsertCreator implements PreparedStatementCreator {
 	private PartVO part ;
 	private String[] column;
@@ -251,7 +251,7 @@ RollBack, commit 과 같은 기능 실행.
 <!--위의 transactionManager는 default 값이므로 명시적으로 써주지 않아도된다-->
 <tx:annotation-driven transaction-manager="transactionManager"/>
 ```
- 
+
 
 
 ```java
@@ -260,16 +260,16 @@ RollBack, commit 과 같은 기능 실행.
 public void execute(String partName, String productName, int productPrice) throws Exception {
     PartVO part = new PartVO();
     part.setPartName(partName);
-    
+
     partDAO.insert(part);
-    
+
     ProductVO product = new ProductVO();
     product.setProductName(productName);
     product.setProductPrice(productPrice);
     product.setPartId(part.getPartId());
-    
+
     productDAO.insert(product);
-    
+
     System.out.println(part);
     System.out.println(product);
 }
@@ -290,17 +290,17 @@ service3.execute("의류", "게이밍마우스", 50000);
 public void execute(String partName, String productName, int productPrice) throws Exception {
     PartVO part = new PartVO();
     part.setPartName(partName);
-    
+
     partDAO.insert(part);
-    
+
     ProductVO product = new ProductVO();
     product.setProductName(productName);
     product.setProductPrice(productPrice);
     product.setPartId(3000);
     //존재할 수 없는 partId를 집어넣었다.
-    
+
     productDAO.insert(product);
-    
+
     System.out.println(part);
     System.out.println(product);
 }
@@ -339,13 +339,13 @@ resource 작동
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
-	
+
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<!-- 이미지 사용 시 resources 하위로 들어가는데
-	해당 디렉토리를 이용할 시 
+	해당 디렉토리를 이용할 시
 	resources mapping으로 폼이 바귄다.-->
 	<resources mapping="/resources/**" location="/resources/" />
 
@@ -354,7 +354,7 @@ resource 작동
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	
+
 	<context:component-scan base-package="com.example.springmvc" />
 
 </beans:beans>
@@ -363,7 +363,7 @@ resource 작동
 
 `Java Resources`의 src와 src는 같은 디렉토리이다.
 
-하지만 `Java Resources`같은 경우 세부 설정파일이 
+하지만 `Java Resources`같은 경우 세부 설정파일이
 위의 `Spring Elements`와 `JAX-WS Web Services` 와 같은 디렉토리에 나누어 들어가져있다.
 
 즉 위 파일들은 `Maven`이 설정대로 정리해준 디렉토리
