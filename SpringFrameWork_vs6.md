@@ -105,7 +105,7 @@ public String postVaildater(@ModelAttribute("info") MemberCommand cmd, Errors er
 }
 ```
 
-```jspp
+```jsp
 <form:form modelAttribute="info">
 	<label for="name" >
 		이름 : <form:input type="text" path="name"/>
@@ -371,8 +371,8 @@ public class SessionCheckInterception implements HandlerInterceptor {
     </interceptor>
 </interceptors>
 ```
-`session` 정보 없이 바로 `mypage` 접근 시 아무런 페이지가 뜨지 않는다.
-![](pic/preHandleResult.png)
+`session` 정보 없이 바로 `mypage` 접근 시 아무런 페이지가 뜨지 않는다.<br/>
+![](pic/preHandleResult.png)<br/>
 `Interceptor`의 `preHandle`이 `false`를 반환하여 아무런 행동도 취하지 않았기 때문
 
 즉 `view`에서 `controller`에 도달하기 전에 `interceptor`에 들려 `handler`에 따라 행동을 취한다.
