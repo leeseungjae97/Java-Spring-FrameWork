@@ -1,4 +1,4 @@
-****# JDBC
+# JDBC
 DB TABLE 생성
 ```sql
 CREATE TABLE member (
