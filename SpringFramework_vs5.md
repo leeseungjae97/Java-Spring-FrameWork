@@ -251,7 +251,7 @@ public String welcome(HttpServletRequest request, Model model) {
 또한 `Model`은 `View` 기능이 없으므로 `ViewResolver`에 의해 `View`를 선택할 수 있게 `View` 이름반환
 
 
-```jsp
+```js
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -291,7 +291,7 @@ public String welcome(HttpServletRequest request, Model model) {
     return "welcome";
 }
 ```
-```jsp
+```js
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -310,7 +310,7 @@ nick: ${member.nick}
 ```java
 model.addAttribute(member);
 ```
-```jsp
+```js
 <!-- 대문자가 오면 Class를 참조하기 때문에 소문자 m이 와야한다. -->
 email: ${memberVO.email}<br/>
 nick: ${memberVO.nick}
@@ -367,7 +367,7 @@ public enum RequestMethod {
 
 다음은 `ModelAndView`와 `Model`을 이용한 `VO객체` `set, get` 예제이다
 `member/registerForm`
-```jsp
+```js
 <form name="regForm" action="register" method="post">
 <div>
 	<label>
@@ -425,7 +425,7 @@ public class WelcomeController {
 <br/>
 
 `member/result`
-```jsp
+```js
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -477,7 +477,7 @@ public class PathController {
 	}
 }
 ```
-```jsp
+```js
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
