@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mycompany.my.dao.VDao">
+   <select id="listDao" resultType="Vision">
+        select * from MARKET_VISION ORDER BY num DESC
+   </select>
+  
+   <insert id="writeDao" parameterType="java.lang.String">
+   	insert into MARKET_VISION values (vision_seq.nextval, #{day}, #{content})
+   </insert>
+   
+   <delete id="deleteDao" parameterType="java.lang.String">
+   	delete from MARKET_VISION WHERE num = #{num}
+   </delete>
+</mapper>

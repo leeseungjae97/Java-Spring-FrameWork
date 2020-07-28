@@ -1,0 +1,140 @@
+{\rtf1\ansi\ansicpg949\deff0\nouicompat\deflang1033\deflangfe1042{\fonttbl{\f0\fnil\fcharset0 Courier New;}{\f1\fnil\fcharset129 \'b8\'bc\'c0\'ba \'b0\'ed\'b5\'f1;}{\f2\fnil Consolas;}}
+{\colortbl ;\red0\green0\blue0;\red63\green95\blue191;\red0\green128\blue128;\red63\green127\blue127;\red127\green0\blue127;\red42\green0\blue255;\red127\green0\blue85;\red106\green62\blue62;\red100\green100\blue100;\red0\green0\blue192;\red191\green95\blue63;}
+{\*\generator Riched20 10.0.18362}\viewkind4\uc1 
+\pard\sl240\slmult1\f0\fs20\lang18 spring \f1\lang1042\'c7\'c1\'b7\'b9\'c0\'d3\'bf\'f6\'c5\'a9\'bf\'a1\'bc\'ad\f0  \lang18 common-fileupload \f1\lang1042\'b6\'f3\'c0\'cc\'ba\'ea\'b7\'af\'b8\'ae\'b8\'a6\f0  \f1\'c0\'cc\'bf\'eb\'c7\'cf\'bf\'a9\f0  \f1\'c6\'c4\'c0\'cf\f0  \f1\'be\'f7\'b7\'ce\'b5\'e5\f0  \f1\'c7\'cf\'b1\'e2\f0\par
+\par
+pom.xml \f1\'c6\'c4\'c0\'cf\'bf\'a1\f0  \f1\'c6\'c4\'c0\'cf\f0  \f1\'be\'f7\'b7\'ce\'b5\'e5\f0  \f1\'b6\'f3\'c0\'cc\'ba\'ea\'b7\'af\'b8\'ae\'b8\'a6\f0  \f1\'c3\'df\'b0\'a1\'c7\'d1\'b4\'d9\f0 . \par
+\par
+\tab\f1\'c3\'df\'b0\'a1\f0  \f1\'b6\'f3\'c0\'cc\'ba\'ea\'b7\'af\'b8\'ae\f0  : commons-fileupload\par
+\par
+\cf1\tab\cf2 <!-- commons-fileupload -->\cf0\par
+\cf1\tab\cf3 <\cf4 dependency\cf3 >\cf0\par
+\cf1\tab\tab\cf3 <\cf4 groupId\cf3 >\cf1 commons-fileupload\cf3 </\cf4 groupId\cf3 >\cf0\par
+\cf1\tab\tab\cf3 <\cf4 artifactId\cf3 >\cf1 commons-fileupload\cf3 </\cf4 artifactId\cf3 >\cf0\par
+\cf1\tab\tab\cf3 <\cf4 version\cf3 >\cf1 1.4\cf3 </\cf4 version\cf3 >\cf0\par
+\cf1\tab\cf3 </\cf4 dependency\cf3 >\par
+\cf0\par
+  \f1\'c6\'c4\'c0\'cf\f0  \f1\'be\'f7\'b7\'ce\'b5\'e5\f0  \f1\'bd\'c3\f0  \f1\'bb\'e7\'bf\'eb\'c7\'d2\f0  \f1\'ba\'f3\f0  \f1\'b0\'b4\'c3\'bc\'b8\'a6\f0  \f1\'bb\'fd\'bc\'ba\'c7\'d1\'b4\'d9\f0 . src/main/resources \f1\'c6\'fa\'b4\'f5\'bf\'a1\f0  FileUpload.xml \f1\'c0\'cc\'b6\'f3\'b4\'c2\f0  \f1\'c0\'cc\'b8\'a7\'c0\'c7\f0  Spring Bean Configuration \f1\'c6\'c4\'c0\'cf\'c0\'bb\f0  \f1\'bb\'fd\'bc\'ba\'c7\'d1\f0  \f1\'c8\'c4\f0  \f1\'be\'c6\'b7\'a1\'c0\'c7\f0  \f1\'bd\'ba\'c7\'c1\'b8\'b5\f0  \f1\'ba\'f3\f0  \f1\'c1\'a4\'ba\'b8\'b8\'a6\f0  \f1\'b5\'ee\'b7\'cf\'c7\'d1\'b4\'d9\f0 .\par
+\par
+\cf1\tab\cf3 <\cf4 bean\cf0  \cf5 id\cf1 =\cf6\i "multipartResolver"\cf0\i0\par
+\tab\tab\cf5 class\cf1 =\cf6\i "org.springframework.web.multipart.commons.CommonsMultipartResolver"\cf3\i0 >\cf0\par
+\cf1\tab\tab\cf3 <\cf4 property\cf0  \cf5 name\cf1 =\cf6\i "maxUploadSize"\cf0\i0  \cf5 value\cf1 =\cf6\i "10485760"\cf3\i0 />\cf1\tab\cf0\par
+\cf1\tab\cf3 </\cf4 bean\cf3 >\par
+\cf0\par
+  CommonsMultipartResolver \f1\'c5\'ac\'b7\'a1\'bd\'ba\'c0\'c7\f0  setMaxUploadSize() \f1\'b8\'de\'bc\'ad\'b5\'e5\'b4\'c2\f0  \f1\'be\'f7\'b7\'ce\'b5\'e5\f0  \f1\'b0\'a1\'b4\'c9\'c7\'d1\f0  \f1\'c6\'c4\'c0\'cf\'c0\'c7\f0  \f1\'c3\'d6\'b4\'eb\f0  \f1\'c5\'a9\'b1\'e2\'b8\'a6\f0  \f1\'c1\'f6\'c1\'a4\'c7\'cf\'b4\'c2\f0  \f1\'b8\'de\'bc\'ad\'b5\'e5\'c0\'cc\'b4\'d9\f0 .\par
+\par
+  \f1\'c6\'c4\'c0\'cf\f0  \f1\'be\'f7\'b7\'ce\'b5\'e5\f0  \f1\'b4\'eb\'bb\'f3\f0  \f1\'b5\'f0\'b7\'ba\'c5\'e4\'b8\'ae\f0  \f1\'b6\'c7\'c7\'d1\f0  \f1\'bd\'ba\'c7\'c1\'b8\'b5\f0  \f1\'ba\'f3\'c0\'b8\'b7\'ce\f0  \f1\'b5\'ee\'b7\'cf\'c7\'d8\'b5\'ce\'b8\'e9\f0  @Autowired\f1\'bf\'a1\f0  \f1\'c0\'c7\'c7\'d1\f0  \f1\'c0\'da\'b5\'bf\f0  \f1\'c1\'d6\'c0\'d4\'c0\'cc\f0  \f1\'b0\'a1\'b4\'c9\'c7\'d8\'c1\'f8\'b4\'d9\f0 .\par
+\par
+\cf1\tab\cf3 <\cf4 bean\cf0  \cf5 id\cf1 =\cf6\i "uploadPath"\cf0\i0  \cf5 class\cf1 =\cf6\i "java.lang.String"\cf3\i0 >\cf0\par
+\cf1\tab\tab\cf3 <\cf4 constructor-arg\cf0  \cf5 value\cf1 =\cf6\i "C:/Temp"\cf3\i0 />\cf0\par
+\cf1\tab\cf3 </\cf4 bean\cf3 >\par
+\cf0\par
+\lang18   servlet-context.xml \f1\lang1042\'c6\'c4\'c0\'cf\'bf\'a1\f0  \f1\'be\'c6\'b7\'a1\'c0\'c7\f0  \f1\'b3\'bb\'bf\'eb\'c0\'bb\f0  \f1\'c3\'df\'b0\'a1\'c7\'cf\'bf\'a9\f0  \f1\'c0\'a7\'c0\'c7\f0  FileUpload.xml \f1\'c6\'c4\'c0\'cf\'c0\'bb\f0  import \f1\'c7\'d1\'b4\'d9\f0 .\par
+\par
+<beans:import resource="classpath:FileUpload.xml"/>\par
+\par
+  \f1\'c6\'c4\'c0\'cf \'be\'f7\'b7\'ce\'b5\'e5 \'b1\'e2\'b4\'c9\'c0\'bb \'bc\'f6\'c7\'e0\'c7\'d2 \'c5\'ac\'b7\'a1\'bd\'ba\'b8\'a6 \'bb\'fd\'bc\'ba\'c7\'d1\'b4\'d9.\f0\par
+\par
+\cf7\b\lang18 public\cf1\b0  \cf7\b class\cf1\b0  FileUploadUtils \{\par
+\tab\cf0\par
+\cf1\tab\cf7\b public\cf1\b0  \cf7\b static\cf1\b0  String uploadFile(String \cf8 uploadPath\cf1 , \par
+\tab\tab\tab\tab\tab\tab   String \cf8 originalName\cf1 , \par
+\tab\tab\tab\tab\tab\tab   \cf7\b byte\cf1\b0 [] \cf8 fileData\cf1 ) \cf7\b throws\cf1\b0  IOException \{\cf0\par
+\cf1\tab\tab File \cf8 target\cf1  = \cf7\b new\cf1\b0  File(\cf8 uploadPath\cf1 , \cf8 originalName\cf1 );\cf0\par
+\cf1\tab\tab FileCopyUtils.\i copy\i0 (\cf8 fileData\cf1 , \cf8 target\cf1 );\cf0\par
+\cf1\tab\tab\cf7\b return\cf1\b0  \cf8 originalName\cf1 ;\cf0\par
+\cf1\tab\}\cf0\par
+\cf1\}\par
+\par
+  \f1\lang1042\'c0\'a7 FileUploadUtils \'c5\'ac\'b7\'a1\'bd\'ba\'c0\'c7 uploadFile() \'b8\'de\'bc\'ad\'b5\'e5\'c0\'c7 \'c0\'ce\'bc\'f6\'b4\'c2 \'b4\'d9\'c0\'bd\'b0\'fa \'b0\'b0\'b4\'d9.\par
+\par
+\cf0\lang18\tab String uploadPath\tab : \lang1042\'c6\'c4\'c0\'cf\'c0\'bb \'c0\'fa\'c0\'e5\'c7\'d2 \'b5\'f0\'c5\'d8\'c5\'e4\'b8\'ae\par
+\tab String originalName\tab : \'be\'f7\'b7\'ce\'b5\'e5 \'c6\'c4\'c0\'cf\'c0\'c7 \'bd\'c7\'c1\'a6 \'c0\'cc\'b8\'a7\par
+\tab byte[] fileData\tab\tab : \'be\'f7\'b7\'ce\'b5\'e5 \'c6\'c4\'c0\'cf\'c0\'c7 \'b5\'a5\'c0\'cc\'c5\'cd\par
+\par
+  \'c0\'a7\'c0\'c7 uploadFile() \'b8\'de\'bc\'ad\'b5\'e5\'bf\'a1\'bc\'ad\'b4\'c2 \'c6\'c4\'c0\'cf\'c0\'bb \'bb\'fd\'bc\'ba\'c7\'cf\'b0\'ed \'bb\'fd\'bc\'ba\'b5\'c8 \'c6\'c4\'c0\'cf\'bf\'a1 \'be\'f7\'b7\'ce\'b5\'e5 \'c6\'c4\'c0\'cf\'c0\'c7 \'b5\'a5\'c0\'cc\'c5\'cd\'b8\'a6 \'ba\'b9\'bb\'e7\'c7\'d1 \'c8\'c4 \'be\'f7\'b7\'ce\'b5\'e5 \'b5\'c8 \'c6\'c4\'c0\'cf\'c0\'c7 originalName\'c0\'bb \'b9\'dd\'c8\'af\'c7\'d1\'b4\'d9. \par
+\par
+  \'be\'c6\'b7\'a1\'b4\'c2 \'c6\'c4\'c0\'cf \'be\'f7\'b7\'ce\'b5\'e5\'b8\'a6 \'c5\'d7\'bd\'ba\'c6\'ae\'c7\'cf\'b1\'e2 \'c0\'a7\'c7\'d1 \'c4\'c1\'c6\'ae\'b7\'d1\'b7\'af\'c0\'c7 \'b3\'bb\'bf\'eb\'c0\'cc\'b4\'d9.\par
+\par
+\cf9\f2 @Controller\cf0\par
+\cf7\b public\cf1\b0  \cf7\b class\cf1\b0  UploadController \{\par
+\cf0\par
+\cf1\tab\cf9 @Autowired\cf0\par
+\cf1\tab\cf9 @Qualifier\cf1 (\cf6 "uploadPath"\cf1 )\cf0\par
+\cf1\tab\cf7\b private\cf1\b0  String \cf10 uploadPath\cf1 ;\cf0\par
+\cf1\tab\cf0\par
+\cf1\tab\cf9 @RequestMapping\cf1 (value=\cf6 "/upload"\cf1 , method=RequestMethod.\cf10\b\i GET\cf1\b0\i0 )\cf0\par
+\cf1\tab\cf7\b public\cf1\b0  String upload() \{\cf0\par
+\cf1\tab\tab\cf7\b return\cf1\b0  \cf6 "form"\cf1 ;\cf0\par
+\cf1\tab\}\cf0\par
+\cf1\tab\cf0\par
+\cf1\tab\cf9 @RequestMapping\cf1 (value=\cf6 "/upload"\cf1 , method=RequestMethod.\cf10\b\i POST\cf1\b0\i0 )\cf0\par
+\cf1\tab\cf7\b public\cf1\b0  \cf7\b void\cf1\b0  uploadAjaxPost(MultipartFile \cf8 file\cf1 , \par
+\f1\tab\tab\tab\tab\tab  \f2 HttpServletResponse \cf8 response\cf1 )\f1  \cf7\b\f2 throws\cf1\b0  Exception \{\cf0\par
+\cf1\tab\tab String \cf8 originalFileName\cf1  = \cf8 file\cf1 .getOriginalFilename();\cf0\par
+\cf1\tab\tab\cf7\b byte\cf1\b0 [] \cf8 fileBytes\cf1  = \cf8 file\cf1 .getBytes();\cf0\par
+\cf1\tab\tab\cf0\par
+\cf1\tab\tab String \cf8 fileName\cf1  = FileUploadUtils.\i uploadFile\i0 (\cf10 uploadPath\cf1 , \cf8 originalFileName\cf1 , \cf8 fileBytes\cf1 );\cf0\par
+\cf1\tab\tab System.\cf10\b\i out\cf1\b0\i0 .println(\cf8 fileName\cf1 );\cf0\par
+\cf1\tab\tab\cf8 response\cf1 .setContentType(\cf6 "text/plan; charset=utf-8"\cf1 );\cf0\par
+\cf1\tab\tab\cf8 response\cf1 .getWriter().print(\cf8 fileName\cf1 );\cf0\par
+\cf1\tab\}\cf0\par
+\cf1\}\par
+\par
+\par
+\f1\tab URI\tab\tab METHOD\tab\'b1\'e2\'b4\'c9\f2\par
+\f1\tab /upload\tab\tab GET\tab\tab\'c6\'c4\'c0\'cf\'be\'f7\'b7\'ce\'b5\'e5\'b8\'a6 \'c0\'a7\'c7\'d1 \'c6\'fb \'c3\'e2\'b7\'c2\par
+\tab /upload\tab\tab POST\tab\tab\'c6\'c4\'c0\'cf \'be\'f7\'b7\'ce\'b5\'e5\'b8\'a6 \'bc\'f6\'c7\'e0\f2\par
+\par
+\cf0\f0\lang18   \f1\lang1042\'c4\'c1\'c6\'ae\'b7\'d1\'b7\'af\'b8\'a6 \'c0\'db\'bc\'ba\'c7\'cf\'bf\'b4\'b4\'d9\'b8\'e9 /WEB-INF/views \'c6\'fa\'b4\'f5 \'c7\'cf\'c0\'a7\'bf\'a1 form.jsp\'c6\'c4\'c0\'cf\'c0\'bb \'bb\'fd\'bc\'ba\'c7\'d1\'b4\'d9.\par
+\par
+\cf11\f2 <%@\cf0  \cf4 page\cf0  \cf5 language\cf1 =\cf6\i "java"\cf0\i0  \cf5 contentType\cf1 =\cf6\i "text/html; charset=UTF-8"\cf0\i0  \cf5 pageEncoding\cf1 =\cf6\i "UTF-8"\cf11\i0 %>\cf0\par
+\cf3 <!\cf4 DOCTYPE\cf0  \cf3 html>\cf0\par
+\cf3 <\cf4 html\cf3 >\cf0\par
+\cf3 <\cf4 head\cf3 >\cf0\par
+\cf3 <\cf4 meta\cf0  \cf5 charset\cf1 =\cf6\i "UTF-8"\cf3\i0 >\cf0\par
+\cf3 <\cf4 title\cf3 >\cf1 Insert title here\cf3 </\cf4 title\cf3 >\cf0\par
+\cf3 <\cf4 script\cf0  \cf5 src\cf1 =\cf6\i "resources/jquery-3.5.1.min.js"\cf3\i0 ></\cf4 script\cf3 >\cf0\par
+\cf3 <\cf4 script\cf3 >\cf0\par
+\cf1\tab $(document).ready(\cf7\b function\cf1\b0 () \{\cf0\par
+\cf1\tab\tab $(\cf6 '#btnUpload'\cf1 ).click(\cf7\b function\cf1\b0 () \{\cf0\par
+\cf1\tab\tab\tab\cf7\b var\cf1\b0  formData = \cf7\b new\cf1\b0  FormData();\cf0\par
+\cf1\tab\tab\tab\cf7\b var\cf1\b0  file = $(\cf6 '#upFile'\cf1 )[0].files[0];\cf0\par
+\cf1\tab\tab\tab formData.append(\cf6 "file"\cf1 , file);\cf0\par
+\cf1\tab\tab\tab\cf0\par
+\cf1\tab\tab\tab $.ajax(\{\cf0\par
+\cf1\tab\tab\tab\tab url: \cf6 'upload'\cf1 ,\cf0\par
+\cf1\tab\tab\tab\tab data: formData,\cf0\par
+\cf1\tab\tab\tab\tab dataType: \cf6 'text'\cf1 ,\cf0\par
+\cf1\tab\tab\tab\tab processData: \cf7\b false\cf1\b0 ,\cf0\par
+\cf1\tab\tab\tab\tab contentType: \cf7\b false\cf1\b0 ,\cf0\par
+\cf1\tab\tab\tab\tab type: \cf6 'POST'\cf1 ,\cf0\par
+\cf1\tab\tab\tab\tab success: \cf7\b function\cf1\b0 (data) \{\cf0\par
+\cf1\tab\tab\tab\tab\tab console.log(data);\cf0\par
+\cf1\tab\tab\tab\tab\}\cf0\par
+\cf1\tab\tab\tab\});\cf0\par
+\cf1\tab\tab\});\cf0\par
+\cf1\tab\});\cf0\par
+\cf3 </\cf4 script\cf3 >\cf0\par
+\cf3 </\cf4 head\cf3 >\cf0\par
+\cf3 <\cf4 body\cf3 >\cf0\par
+\cf3 <\cf4 form\cf0  \cf5 id\cf1 =\cf6\i "uploadForm"\cf0\i0  \cf5 action\cf1 =\cf6\i "upload"\cf0\i0  \cf5 enctype\cf1 =\cf6\i "multipart/form-data"\cf3\i0 >\cf0\par
+\cf1\tab\cf3 <\cf4 input\cf0  \cf5 type\cf1 =\cf6\i "file"\cf0\i0  \cf5 id\cf1 =\cf6\i "upFile"\cf3\i0 ><\cf4 br\cf3 >\cf0\par
+\cf1\tab\cf3 <\cf4 button\cf0  \cf5 type\cf1 =\cf6\i "button"\cf0\i0  \cf5 id\cf1 =\cf6\i "btnUpload"\cf3\i0 >\cf1\f1\'b5\'ee\'b7\'cf\'c7\'cf\'b1\'e2\cf3\f2 </\cf4 button\cf3 >\cf0\par
+\cf3 </\cf4 form\cf3 >\cf0\par
+\cf3 </\cf4 body\cf3 >\cf0\par
+\cf3 </\cf4 html\cf3 >\cf0\f1\par
+\f0\lang18\par
+  \f1\lang1042\'c0\'a7\'c0\'c7 form.jsp \'c6\'c4\'c0\'cf\'bf\'a1\'bc\'ad\'b4\'c2 FormData \'b0\'b4\'c3\'bc\'b8\'a6 \'bb\'fd\'bc\'ba\'c7\'d1 \'c8\'c4 \'c0\'fc\'bc\'db\'c7\'cf\'b0\'ed\'c0\'da \'c7\'cf\'b4\'c2 \'c6\'c4\'c0\'cf\'c0\'bb FormData \'b0\'b4\'c3\'bc\'bf\'a1 \'c3\'df\'b0\'a1\'c7\'d1 \'c8\'c4 ajax\'b8\'a6 \'c0\'cc\'bf\'eb\'c7\'cf\'bf\'a9 \'c6\'c4\'c0\'cf \'b5\'a5\'c0\'cc\'c5\'cd\'b8\'a6 \'c0\'fc\'bc\'db\'c7\'d1\'b4\'d9.\par
+   \'c0\'fc\'bc\'db \'c6\'fb\'bf\'a1\'b4\'c2 \'b9\'dd\'b5\'e5\'bd\'c3 enctype \'bc\'d3\'bc\'ba\'b0\'aa\'c0\'b8\'b7\'ce multipart/form-data\'b8\'a6 \'c1\'f6\'c1\'a4\'c7\'cf\'bf\'a9\'be\'df \'c7\'cf\'b8\'e7, ajax() \'b8\'a6 \'c0\'cc\'bf\'eb\'c7\'cf\'bf\'a9 \'c6\'fb \'b5\'a5\'c0\'cc\'c5\'cd\'b8\'a6 \'c0\'fc\'bc\'db\'bd\'c3\'bf\'a1\'b4\'c2 \'b9\'dd\'b5\'e5\'bd\'c3 \'be\'c6\'b7\'a1\'c0\'c7 \'b5\'ce \'bc\'d3\'bc\'ba\'c0\'bb \'c1\'f6\'c1\'a4\'c7\'cf\'b5\'b5\'b7\'cf \'c7\'cf\'bf\'a9\'be\'df \'c7\'d1\'b4\'d9.\par
+\par
+\cf1\f2\tab processData: \cf7\b false\cf1\b0 ,\cf0\par
+\cf1\tab contentType: \cf7\b false\cf1\b0 ,\cf0\par
+\f1\par
+  \'b6\'c7\'c7\'d1 ajax() \'b8\'de\'bc\'ad\'b5\'e5\'c0\'c7 dataType \'bc\'d3\'bc\'ba\'c0\'ba \'bc\'ad\'b9\'f6\'b7\'ce\'ba\'ce\'c5\'cd\'c0\'c7 \'c0\'c0\'b4\'e4 \'b5\'a5\'c0\'cc\'c5\'cd\'c0\'c7 \'c7\'fc\'bd\'c4\'c0\'cc text/plain \'c7\'fc\'bd\'c4\'c0\'d3\'c0\'bb \'b3\'aa\'c5\'b8\'b3\'bd\'b4\'d9.\par
+\par
+\cf1\tab\f2 dataType: \cf6 'text'\cf1 ,\par
+\par
+\f1   \'b1\'d7\'b7\'af\'b9\'c7\'b7\'ce \'bc\'ad\'b9\'f6\'c0\'c7 \'c0\'c0\'b4\'e4 \'b5\'a5\'c0\'cc\'c5\'cd\'c7\'fc\'bd\'c4\'c0\'cc text \'c7\'fc\'bd\'c4\'c0\'cc \'be\'c6\'b4\'d1 json\'c0\'cc\'b3\'aa xml \'c7\'fc\'bd\'c4\'c0\'cc\'b6\'f3\'b8\'e9 \'b1\'d7\'bf\'a1 \'b8\'c2\'b5\'b5\'b7\'cf dataType\'c0\'bb \'c1\'f6\'c1\'a4\'c7\'cf\'b5\'b5\'b7\'cf \'c7\'d1\'b4\'d9.\cf0\f0\lang18\par
+}
+ 

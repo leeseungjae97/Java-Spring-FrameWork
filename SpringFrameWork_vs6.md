@@ -292,6 +292,7 @@ public String login(@RequestParam("email") String email,
 
 ---
 ## CodeTester
+`spring-test`를 추가해주자.
 `@Test` 는 JUnit 4.12 버전 이상부터 사용가능.
 
 해당 클래스의 package 이름과 같은 package 위에 만들어져야한다.
